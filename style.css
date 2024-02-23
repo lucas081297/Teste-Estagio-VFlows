@@ -1,0 +1,49 @@
+@import url('https://fonts.cdnfonts.com/css/nexa-bold');
+
+section{
+    font-weight: 700;
+}
+
+#reset{
+    all: revert;
+    padding-left: 0.5rem
+}
+
+.text-white{
+    color: #ffffff;
+}
+
+.bg-blue{
+    background-color: #0085b2;
+}
+
+.bg-green{
+    background-color: #019E0F;
+}
+
+.bg-red{
+    background-color: red;
+}
+
+.bg-purple{
+    background-color: #8290CD;
+}
+
+.bg-disabled{
+    background-color: #ABAC9E;
+}
+
+.bg-arrow{
+    background-color: #343527;
+    color: white;
+    padding: 1;
+}
+
+select {
+    border-radius: 5px;
+    width: 90%;
+    appearance: none;
+    border: none;
+    /* safari */
+    -webkit-appearance: none;
+}
