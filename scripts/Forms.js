@@ -16,7 +16,7 @@ import {formValidation} from './FormsValidation.js'
         }
         else{
             event.preventDefault()
-            formValidation()
+            return formValidation()
         }
         
         form.classList.add('was-validated')

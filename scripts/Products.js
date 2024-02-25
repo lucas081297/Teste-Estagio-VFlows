@@ -3,7 +3,7 @@ $('#button-add-product').on('click', function () {
     $('#product-0')
         .clone(true)
         .appendTo('.products')
-        .find('.qtdeEstoque,.valorUnitario,.valorTotal')
+        .find('.qtdeEstoque,.valorUnitario,.valorTotal,.descricaoProduto')
         .val('')
     $('.product').each(function () {
         updateProducts()
