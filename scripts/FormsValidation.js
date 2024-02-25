@@ -1,67 +1,67 @@
 
 export function formValidation (){
 
-    // // Razao Social
-    // let reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
-    // let elementValue = $('[name="razaoSocial"]').val().trim()
-    // if(!reg.test(elementValue)){
-    //     return alert('Razão Social inválida')
-    // }
+    // Razao Social
+    let reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
+    let elementValue = $('[name="razaoSocial"]').val().trim()
+    if(!reg.test(elementValue)){
+        return alert('Razão Social inválida')
+    }
 
-    // //CNPJ
-    // reg = /^[0-9]*$/
-    // elementValue = $('[name="cnpj"]').val().trim()
-    // if(!reg.test(elementValue)){
-    //     return alert('CNPJ deve conter apenas números')
-    // }
-    // if(elementValue.length !== 14){
-    //     return alert('CNPJ deve conter 14 números')
-    // }
+    //CNPJ
+    reg = /^[0-9]*$/
+    elementValue = $('[name="cnpj"]').val().trim()
+    if(!reg.test(elementValue)){
+        return alert('CNPJ deve conter apenas números')
+    }
+    if(elementValue.length !== 14){
+        return alert('CNPJ deve conter 14 números')
+    }
 
-    // //Inscricao Estadual
-    // reg = /^[0-9]*$/
-    // elementValue = $('[name="inscricaoEstadual"]').val().trim()
-    // if(!reg.test(elementValue)){
-    //     return alert('Inscricao Estadual so pode ter números')
-    // }
+    //Inscricao Estadual
+    reg = /^[0-9]*$/
+    elementValue = $('[name="inscricaoEstadual"]').val().trim()
+    if(!reg.test(elementValue)){
+        return alert('Inscricao Estadual so pode ter números')
+    }
 
-    // //CEP
-    // reg = /^[0-9]*$/
-    // elementValue = $('[name="cep"]').val().trim()
-    // if(!reg.test(elementValue)){
-    //     return alert('CEP so pode ter números')
-    // }
-    // if(elementValue.length !== 8){
-    //     return alert('CEP deve ter 8 dígitos')
-    // }
+    //CEP
+    reg = /^[0-9]*$/
+    elementValue = $('[name="cep"]').val().trim()
+    if(!reg.test(elementValue)){
+        return alert('CEP so pode ter números')
+    }
+    if(elementValue.length !== 8){
+        return alert('CEP deve ter 8 dígitos')
+    }
 
-    // //Inscricao Municipal
+    //Inscricao Municipal
 
-    // reg = /^[0-9]*$/
-    // elementValue = $('[name="inscricaoMunicipal"]').val().trim()
-    // if(!reg.test(elementValue)){
-    //     return alert('Inscricao Municipal so pode ter números')
-    // }
+    reg = /^[0-9]*$/
+    elementValue = $('[name="inscricaoMunicipal"]').val().trim()
+    if(!reg.test(elementValue)){
+        return alert('Inscricao Municipal so pode ter números')
+    }
 
-    // //Nome contato
-    // reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
-    // elementValue = $('[name="nomeContato"]').val().trim()
-    // if(!reg.test(elementValue)){
-    //     return alert('Nome inválido')
-    // }
+    //Nome contato
+    reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
+    elementValue = $('[name="nomeContato"]').val().trim()
+    if(!reg.test(elementValue)){
+        return alert('Nome inválido')
+    }
 
-    // //Telefone contato
+    //Telefone contato
 
-    // reg = /^[0-9]*$/
-    // elementValue = $('[name="telefoneContato"]').val().trim()
-    // if(!reg.test(elementValue)){
-    //     return alert('Numero inválido')
-    // }
+    reg = /^[0-9]*$/
+    elementValue = $('[name="telefoneContato"]').val().trim()
+    if(!reg.test(elementValue)){
+        return alert('Numero inválido')
+    }
 
-    // //File Validation
-    // if ($('.file').length < 2) {
-    //     return alert('É obrigatório no mínimo 1 anexo')
-    // }
+    //File Validation
+    if ($('.file').length < 2) {
+        return alert('É obrigatório no mínimo 1 anexo')
+    }
 
     //Process Form
     $('form').addClass('loading')
