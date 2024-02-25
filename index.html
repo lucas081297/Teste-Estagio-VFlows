@@ -1,170 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Fornecedor</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="./scripts/listUnits.js" type="module"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="./scripts/Units.js" type="module"></script>
+    <script src="./scripts/Products.js" type="module"></script>
+    <script src="./scripts/Forms.js" type="module"></script>
+    <script src="./scripts/Files.js" type="module"></script>
+    <script src="./scripts/FormsValidation.js" type="module"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="px-2 fs-6">
-        <h1 class="text-center mt-3">CADASTRO DE FORNECEDOR/PRODUTO</h1>
-        <section class="py-4">
-            <div class="ps-2 my-0 bg-blue text-light">Dados do Fornecedor</div>
-            <div class="border border-black px-2 py-3">
-                <div class="row gy-2 form-group">
-                    <div class="col-md-8 ">
-                        <label class="ps-2">Razão Social</label>
-                        <input class="form-control border-black col-md-7 py-0" type="text" required>                        
-                    </div>
-                    <div class="col">
-                        <label class="ps-2">CNPJ</label>
-                        <input class="form-control border-black py-0" type="text">
-                    </div>
-                    <div class="col-md-8 ">
-                        <label class="ps-2">Nome Fantasia</label>
-                        <input class="form-control border-black col-md-7 py-0" type="text">                        
-                    </div>
-                    <div class="col">
-                        <label class="ps-2">Inscrição Estadual</label>
-                        <input class="form-control border-black py-0" type="text">
-                    </div>
+    <div class="p-5 loading-container d-none"><img src="/assets/loading-2.gif" alt=""></div>
+    <form action="." id="main" class="needs-validation" novalidate>
+        <div class="px-2 fs-6">
+            <h1 class="text-center mt-3">CADASTRO DE FORNECEDOR/PRODUTO</h1>
+            <section class="py-4">
+                <div class="ps-2 my-0 bg-blue text-light">Dados do Fornecedor</div>
+                <div id="dados" class="border border-black px-2 py-3">
+                    <div class="row gy-2 ">
+                        <div class="col-md-8 ">
+                            <label class="ps-2">Razão Social</label>
+                            <input name="razaoSocial" class="form-control border-black col-md-7 py-0" required/>
+                            <div class="invalid-feedback">
+                                Preenchimento Obrigatório - Somente Letras, Acentos e Espaço
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label class="ps-2">CNPJ</label>
+                            <input name="cnpj" class="form-control border-black py-0" minlength="14" maxlength="14"
+                                type="number" />
+                            <div class="invalid-feedback">
+                                Insira um CNPJ válido - 14 dígitos
+                            </div>
+                        </div>
+                        <div class="col-md-8 ">
+                            <label class="ps-2">Nome Fantasia</label>
+                            <input name="nomeFantasia" class="form-control border-black col-md-7 py-0" type="text" required
+                             />
+                            <div class="invalid-feedback">
+                                Preenchimento Obrigatório
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label class="ps-2">Inscrição Estadual</label>
+                            <input name="inscricaoEstadual" class="form-control border-black py-0" maxlength="9"
+                                type="text" />
+                        </div>
 
-                    <div class="col-md-5">
-                        <label class="ps-2">CEP</label>
-                        <input class="form-control border-black col-md-7 py-0" type="text">                        
-                    </div>
-                    <div class="col-md-4 offset-3">
-                        <label class="ps-2">Inscrição Municipal</label>
-                        <input class="form-control border-black py-0" type="text">
-                    </div>
+                        <div class="col-md-5">
+                            <label class="ps-2">CEP</label>
+                            <input name="cep" class="form-control border-black col-md-7 py-0" type="number" required/>
+                            <div id="loading" class="d-none">Carregando...</div>
+                            <div class="invalid-feedback">
+                                Insira um CEP válido - 8 dígitos (somente números)
+                            </div>
+                        </div>
+                        <div class="col-md-4 offset-3">
+                            <label class="ps-2">Inscrição Municipal</label>
+                            <input name="inscricaoMunicipal" class="form-control border-black py-0" type="text">
+                        </div>
 
-                    <div class="col-md-8">
-                        <label class="ps-2">Endereço</label>
-                        <input class="form-control border-black col-md-7 py-0" type="text">                        
-                    </div>
-                    <div class="col-md-4">
-                        <label class="ps-2">Número</label>
-                        <input class="form-control border-black py-0" type="text">
-                    </div>
-
-                    <div class="col-12">
-                        <label class="ps-2">Complemento</label>
-                        <input class="form-control border-black col-md-7 py-0" type="text">                        
-                    </div>
-
-                    <div class="col-md-5">
-                        <label class="ps-2">Bairro</label>
-                        <input class="form-control border-black col-md-7 py-0" type="text">                        
-                    </div>
-                    <div class="col-md-5">
-                        <label class="ps-2">Município</label>
-                        <input class="form-control border-black py-0 " type="text">
-                    </div>
-                    <div class="col-md-2">
-                        <label class="ps-2">Estado</label>
-                        <input class="form-control border-black py-0" type="text">
-                    </div>
-
-                    <div class="col-md-8">
-                        <label class="ps-2">Nome da Pessoa de Contato</label>
-                        <input class="form-control border-black col-md-7 py-0" type="text">                        
-                    </div>
-                    <div class="col-md-2">
-                        <label class="ps-2">Telefone</label>
-                        <input class="form-control border-black py-0 " type="text">
-                    </div>
-                    <div class="col-md-2">
-                        <label class="ps-2">E-mail</label>
-                        <input class="form-control border-black py-0" type="text">
-                    </div>
-            </div>
-        </section>
-        <section>
-            <div class="ps-2 my-0 bg-blue text-light">Produtos</div>
-                <div class="border border-black border-top-0 px-2 py-3">
-                    <div class="row g-0 form-group">
-                        <div class="px-0 col-1 d-flex justify-content-center">
-                            <div class="d-flex justify-content-center pt-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ffffff" class="bi bi-trash-fill p-1 bg-red border border-2 border-black shadow" viewBox="0 0 16 16">
-                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                                </svg>
+                        <div class="col-md-8">
+                            <label class="ps-2">Endereço</label>
+                            <input name="endereco" class="form-control border-black col-md-7 py-0" disabled type="text"
+                                 />
+                            <div class="invalid-feedback">
+                                Insira um CEP válido
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="ps-2">Número</label>
+                            <input name="numero" class="form-control border-black py-0" type="text" required/>
+                            <div class="invalid-feedback">
+                                Preenchimento Obrigatório
                             </div>
                         </div>
 
-                        <div class="px-2 col-11">
-                            <fieldset id="field" class="p-2 row g-1 border border-black rounded">
-                                <legend id="reset" class="pe-2">Produto-1</legend>
-                                <div id="pack-img" class="col-md-1 p-1 d-flex justify-content-center align-items-center">
-                                    <div class="d-flex justify-content-center align-items-center bg-purple rounded-circle">
-                                        <img src="/assets/package-svgrepo-com.svg" class="img-fluid p-3" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-11">
-                                    <div class="row">
-                                        <div>
-                                            <label class="ps-2">Produto</label>
-                                            <input class="form-control border-black py-0" type="text">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="ps-2">UND. Medida</label>
-                                            <div class="form-control border-black py-0 ps-0 pe-0 d-flex justify-content-between">
-                                                <select id="units">
-                                                    <option>aaa</option>
-                                                    <option>aaaa</option>
-                                                </select>
-                                                <img id="select-button" class="bg-arrow p-1" height="25" src="./assets/arrow.svg" alt="">
-                                                </button>
-                                              </div>
-                                                    
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="ps-2">QDTDE. em Estoque</label>
-                                            <input class="form-control border-black py-0" type="text">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="ps-2">Valor Unitário</label>
-                                            <input class="form-control border-black py-0" type="text">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="ps-2">Valor Total</label>
-                                            <input class="form-control border-black py-0 bg-disabled" readonly type="text">
-                                        </div>
-                                    </div>
-                                </fieldset>
+                        <div class="col-12">
+                            <label class="ps-2">Complemento</label>
+                            <input class="form-control border-black col-md-7 py-0" type="text" />
                         </div>
-                        <button class="mt-3 p-1 d-flex justify-content-center align-items-center bg-green text-white border-0 rounded">Adicionar Produto</button>
+
+                        <div class="col-md-5">
+                            <label class="ps-2">Bairro</label>
+                            <input name="bairro" class="form-control border-black col-md-7 py-0" disabled type="text"
+                                />
+                            <div class="invalid-feedback">
+                                Insira um CEP válido
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label class="ps-2">Município</label>
+                            <input name="municipio" class="form-control border-black py-0 " disabled type="text"
+                                />
+                            <div class="invalid-feedback">
+                                Insira um CEP válido
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="ps-2">Estado</label>
+                            <input name="estado" class="form-control border-black py-0" disabled type="text"/>
+                            <div class="invalid-feedback">
+                                Insira um CEP válido
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <label class="ps-2">Nome da Pessoa de Contato</label>
+                            <input name="nomeContato" class="form-control border-black col-md-7 py-0" type="text" required
+                             />
+                            <div class="invalid-feedback">
+                                Preenchimento Obrigatório - Somente Letras, Acentos e Espaço
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="ps-2">Telefone</label>
+                            <input name="telefoneContato" class="form-control border-black py-0 " type="number" required
+                             />
+                            <div class="invalid-feedback">
+                                Insira um telefone válido - Somente números (DDD + número)
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="ps-2">E-mail</label>
+                            <input name="emailContato" class="form-control border-black py-0" type="email" required/>
+                            <div class="invalid-feedback">
+                                Insira um email válido
+                            </div>
+                        </div>
+                        <div class="mt-3 p-1 d-none justify-content-center align-items-center bg-green rounded">
+                            <button type="button"></button>
+                        </div>
                     </div>
-            </div>
+            </section>
+            <section>
+                <div class="ps-2 my-0 bg-blue text-light">Produtos</div>
+                <div class="border border-black border-top-0 px-2 py-3">
+
+                    <div id="products" class="px-2 py-3 products">
+                        <div id="product-0" class="row g-0 product">
+                            <div class="px-0 col-1 d-flex justify-content-center">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button id="product-0" class="px-0 py-0 border-0 button-delete-product"
+                                        type="button"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                            fill="#ffffff"
+                                            class="bi bi-trash-fill p-1 bg-red border border-2 border-black shadow"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                                        </svg></button>
+
+                                </div>
+                            </div>
+
+                            <div class="px-2 col-11">
+                                <fieldset id="field" class="p-2 row g-1 border border-black rounded">
+                                    <legend id="reset" class="pe-2 product-name">Produto-1</legend>
+                                    <div id="pack-img"
+                                        class="col-md-1 p-1 d-flex justify-content-center align-items-center">
+                                        <div
+                                            class="d-flex justify-content-center align-items-center bg-purple rounded-circle">
+                                            <img src="/assets/package-svgrepo-com.svg" class="img-fluid p-3" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-11">
+                                        <div class="row">
+                                            <div>
+                                                <label class="ps-2">Produto</label>
+                                                <input name="descricaoProduto" class="form-control border-black py-0" type="text" required
+                                                 />
+                                                <div class="invalid-feedback">
+                                                    Preenchimento Obrigatório
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="ps-2">UND. Medida</label>
+                                                <div
+                                                    class="form-control border-black py-0 ps-0 pe-0 d-flex justify-content-between">
+                                                    <select name="unidadeMedida" class="select-units" id="product-0">
+                                                        <option value="kg">Quilograma - (kg)</option>
+                                                        <option value="m">Metro - (m)</option>
+                                                        <option value="m2">Metro Quadrado - (m&sup2)</option>
+                                                        <option value="m3">Metro Cúbico - (m&sup3)</option>
+                                                        <div class="invalid-feedback">
+                                                            Preenchimento Obrigatório
+                                                        </div>
+                                                    </select>
+                                                    <img id="product-0" class="bg-arrow p-1 select-button" height="25"
+                                                        src="./assets/arrow.svg" alt="">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="ps-2">QDTDE. em Estoque</label>
+                                                <input name="qtdeEstoque-0" id="product-0"
+                                                    class="form-control border-black py-0 qtdeEstoque" type="number" required
+                                                 />
+                                                <div class="invalid-feedback">
+                                                    Preenchimento Obrigatório
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="ps-2">Valor Unitário</label>
+                                                <input name="valorUnitario-0" id="product-0" required
+                                                    class="form-control border-black py-0 valor-un valorUnitario" type="number"
+                                                    step=".01" />
+                                                <div class="invalid-feedback">
+                                                    Preenchimento Obrigatório
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="ps-2">Valor Total</label>
+                                                <input name="valorTotal-0" id="product-0"
+                                                    class="form-control border rounded border-black py-0 valorTotal" disabled
+                                                    readonly type="number" />
+                                            </div>
+                                        </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 p-1 d-flex justify-content-center align-items-center bg-green rounded">
+                        <button id="button-add-product" class="bg-transparent text-white border-0"
+                            type="button">Adicionar Produto</button>
+                    </div>
+                </div>
+        </div>
         </section>
+
         <section class="mt-2 border">
             <div class="ps-2 my-0 bg-blue text-light">Anexos</div>
-                <div class="border border-black border-top-0 px-2 py-3">
-                <fieldset class="p-2 row g-1 border border-black rounded">
+            <div class="border border-black border-top-0 px-2 py-3">
+                <fieldset class="p-2 row g-1 border border-black rounded files">
                     <legend id="reset" class="pe-2">Itens</legend>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ffffff" class="bi bi-trash-fill p-1 bg-red border border-2 border-black shadow" viewBox="0 0 16 16">
-                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ffffff" class="bi bi-eye p-1 bg-blue border border-2 border-black shadow" viewBox="0 0 16 16">
-                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-                          </svg>
-                          <span class="ps-3">Documento Anexo 1</span>
+                    <div id="file-generic" class="file d-none">
+                        <button type="button" id="file-generic"
+                            class="border-0 bg-transparent w-auto button-delete-file">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ffffff"
+                                class="bi bi-trash-fill p-1 bg-red border border-2 border-black shadow"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                            </svg>
+                        </button>
+                        <button type="button" id="file-generic" class="border-0 bg-transparent w-auto button-open-file">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ffffff"
+                                class="bi bi-eye p-1 bg-blue border border-2 border-black shadow" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                <path
+                                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                            </svg>
+                        </button>
+                        <span class="ps-3 file-name">Documento Anexo 1</span>
                     </div>
                 </fieldset>
                 <div class="mt-3 p-1 d-flex justify-content-center align-items-center bg-green rounded">
-                    <button class="bg-transparent text-white border-0">Incluir Anexo</button>
+                    <input id="add-anexo" type="file" class="bg-transparent text-white border-0" multiple></input>
+                    <label class="d-inline-block text-white text-center p-1 w-100" role="button" for="add-anexo">Incluir
+                        Anexo</label>
                 </div>
             </div>
         </section>
         <div class="my-3 p-1 d-flex justify-content-center align-items-center bg-green rounded">
-            <button class="bg-transparent text-white border-0">Salvar Fornecedor</button>
+            <button id="submit" value="Send" class="bg-transparent text-white border-0" type="submit">Salvar
+                Fornecedor</button>
         </div>
-    </div>
-    
+        </div>
+    </form>
 </body>
+
 </html>

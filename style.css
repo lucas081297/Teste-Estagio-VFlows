@@ -39,6 +39,22 @@ section{
     padding: 1;
 }
 
+.loading{
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+.loading-container{
+    position:fixed;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+input[type="file"] {
+    display: none;
+    width: 100%;
+}
+
 select {
     border-radius: 5px;
     width: 90%;
@@ -46,4 +62,18 @@ select {
     border: none;
     /* safari */
     -webkit-appearance: none;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+
+}
+
+button{
+    width: 100%;
 }

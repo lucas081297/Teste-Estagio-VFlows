@@ -1,8 +1,8 @@
-{	razaoSocial: 'Razao social',
-	nomeFantasia: 'Nome Fantasia',
-	cnpj: '123456',
-	inscricaoEstadual: '123456',
-	inscricaoMunicipal: '123456',
+{	"razaoSocial": "Razao social",
+	"nomeFantasia": "Nome Fantasia",
+	"cnpj": 123456,
+	"inscricaoEstadual": 123456,
+	inscricaoMunicipal: 123456,
 	nomeContato: 'Nome contato',
 	telefoneContato: '+5562999999999999'
 	emailContato: 'email@email.com',
